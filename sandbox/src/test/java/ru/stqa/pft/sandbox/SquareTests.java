@@ -8,8 +8,7 @@ public class SquareTests {
     public void testArea() {
 
 
-        Square s;
-        s = new Square(5);
+        Square s = new Square(5);
 
         assert  s.area() == 25;
 
