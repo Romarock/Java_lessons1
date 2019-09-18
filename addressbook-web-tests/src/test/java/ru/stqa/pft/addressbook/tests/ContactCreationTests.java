@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactCreationTests {
+public class ContactCreationTests  {
   private WebDriver wd;
 
 
@@ -31,7 +31,7 @@ public class ContactCreationTests {
   }
 
   @Test
-  public void testContactCreationTests() throws Exception {
+  public void testContactCreation() throws Exception {
 
     goToAddContact("add new");
     fillContactData(new ContactData("Luke", "Skywalker", "777777777", "papavaider@sith.com"));
