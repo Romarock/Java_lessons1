@@ -4,7 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ContactHelper {
-    public WebDriver wd;
+    private WebDriver wd;
+
+    public ContactHelper(WebDriver wd) {
+        this.wd = wd;
+    }
 
     public void goToHomePage() {
         wd.findElement(By.linkText("home")).click();
