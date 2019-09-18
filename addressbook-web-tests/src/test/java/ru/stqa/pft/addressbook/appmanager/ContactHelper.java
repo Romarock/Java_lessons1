@@ -10,9 +10,7 @@ public class ContactHelper {
         this.wd = wd;
     }
 
-    public void goToHomePage() {
-        wd.findElement(By.linkText("home")).click();
-    }
+    
 
     public void submitUserCreation() {
         wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
@@ -33,7 +31,5 @@ public class ContactHelper {
         wd.findElement(By.name("email")).sendKeys("vader@sith.imp");
     }
 
-    public void goToCreateUserPage() {
-        wd.findElement(By.linkText("add new")).click();
-    }
+
 }
