@@ -25,4 +25,24 @@ public class ContactHelper extends HelperBase {
     }
 
 
+    public void contactSelect (String s) {
+        click(By.name(s));
+    }
+
+    public void deleteContact () {
+        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
+        wd.switchTo().alert().accept();
+    }
+
+    public void goToContactModificationPage() {
+
+        click(By.xpath("//tr[3]/td[7]/a/img"));
+    }
+
+    public void initContactModification() {
+
+        click(By.name("modifiy"));
+    }
 }
+
+
