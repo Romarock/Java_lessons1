@@ -12,8 +12,8 @@ public class ContactHelper extends HelperBase {
 
     
 
-    public void submitContactCreation(String s) {
-        clickContact(By.xpath(s));
+    public void submitContactCreation() {
+        click(By.xpath("(//input[@name='submit'])[2]"));
 
     }
 
@@ -25,12 +25,12 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void contactSelect (String s) {
-        click(By.name(s));
+    public void contactSelect () {
+        click(By.name("selected[]"));
     }
 
     public void deleteContact () {
-        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
+        click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
 
