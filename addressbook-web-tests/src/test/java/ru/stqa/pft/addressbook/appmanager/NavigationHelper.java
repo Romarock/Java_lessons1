@@ -10,8 +10,8 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void goToGroupPage(String groups) {
-      wd.findElement(By.linkText(groups)).click();
+    public void goToGroupPage() {
+      wd.findElement(By.linkText("groups")).click();
     }
 
 
