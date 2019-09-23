@@ -10,8 +10,8 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
-    public void returnToGroupPage(String s) {
-        click(By.linkText(s));
+    public void returnToGroupPage() {
+        click(By.linkText("group page"));
     }
 
     public void submitGroupCreation() {
@@ -32,8 +32,8 @@ public class GroupHelper extends HelperBase {
         click(By.name("delete"));
     }
 
-    public void selectGroup(String s) {
-        click(By.name(s));
+    public void selectGroup() {
+        click(By.name("selected[]"));
     }
 
     public void initGroupModification() {
