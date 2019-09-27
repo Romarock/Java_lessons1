@@ -10,8 +10,10 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    
+    public void goToCreateUserPage() {
+        wd.findElement(By.linkText("add new")).click();
 
+    }
     public void submitContactCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
 
@@ -42,6 +44,19 @@ public class ContactHelper extends HelperBase {
     public void initContactModification() {
 
         click(By.name("modifiy"));
+    }
+
+    public void createContact(ContactData contact) {
+
+        goToCreateUserPage();
+        fillContactsFields(new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star"));
+        submitContactCreation();
+
+    }
+
+    public boolean isThereAContact() {
+
+        return isElementPresent(By.name("selected[]"));
     }
 }
 
