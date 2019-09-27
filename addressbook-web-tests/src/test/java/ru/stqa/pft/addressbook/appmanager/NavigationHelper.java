@@ -24,9 +24,8 @@ public class NavigationHelper extends HelperBase {
     }
 
 
-    public void goToCreateUserPage() {
-        wd.findElement(By.linkText("add new")).click();
-    }
+
+
     public void goToHomePage() {
 
         if (isElementPresent(By.id("maintable"))) {

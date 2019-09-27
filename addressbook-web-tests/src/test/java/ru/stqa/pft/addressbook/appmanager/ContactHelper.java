@@ -24,6 +24,7 @@ public class ContactHelper extends HelperBase {
         typeContactData(By.name("lastname"), contactData.getSecondName());
         typeContactData(By.name("mobile"), contactData.getPhone());
         typeContactData(By.name("email"), contactData.getEmail());
+        typeContactData(By.name("address"), contactData.getAddress());
     }
 
 
@@ -36,14 +37,20 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void goToContactModificationPage() {
+ //   public void goToContactModificationPage() {
 
-        click(By.xpath("//tr[3]/td[7]/a/img"));
-    }
+ //       click(By.xpath("//tr[3]/td[7]/a/img"));
+  //  }
 
     public void initContactModification() {
 
-        click(By.name("modifiy"));
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void SubmitContactModification() {
+
+        click(By.xpath("(//input[@name='update'])[2]"));
+
     }
 
     public void createContact(ContactData contact) {
