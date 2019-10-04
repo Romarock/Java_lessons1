@@ -2,7 +2,11 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -65,6 +69,15 @@ public class ContactHelper extends HelperBase {
 
         return isElementPresent(By.name("selected[]"));
     }
-}
+
+    public int getContactCount() {
+
+      return  wd.findElements(By.name("selected[]")).size();
+
+    }
+
+
+    }
+
 
 
