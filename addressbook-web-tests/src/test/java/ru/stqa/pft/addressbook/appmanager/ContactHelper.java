@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void contactSelect () {
-        click(By.name("selected[]"));
+    public void contactSelect (int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+
     }
 
     public void deleteContact () {
@@ -77,7 +79,26 @@ public class ContactHelper extends HelperBase {
     }
 
 
+    public List<ContactData> getContactList() {
+
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List <WebElement> elements = wd.findElements(By.className("odd"));
+
+        for (WebElement element : elements) {
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+
+
+                String firstName = cells.get(3).getText();
+                String lastName = cells.get(2).getText();
+                ContactData contact = new ContactData(firstName, lastName, "777777777", "papavaider@sith.com", "death star" );
+                contacts.add(contact);
+            }
+
+
+
+        return contacts;
     }
+}
 
 
 
