@@ -15,8 +15,22 @@ public class ContactData {
     private final String address;
 
 
-    public ContactData( String name, String secondName, String phone, String email, String address) {
-        this.id = 0;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(secondName, that.secondName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, secondName);
+    }
+
+    public ContactData(String name, String secondName, String phone, String email, String address) {
+        this.id = Integer.MAX_VALUE;
         this.name = name;
         this.secondName = secondName;
         this.phone = phone;
@@ -53,21 +67,6 @@ public class ContactData {
 
     public String getAddress() {
         return address;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(secondName, that.secondName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, secondName);
     }
 
     @Override
