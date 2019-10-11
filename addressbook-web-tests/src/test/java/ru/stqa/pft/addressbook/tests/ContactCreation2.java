@@ -17,12 +17,11 @@ public class ContactCreation2 extends TestBase {
 
     app.goTo().HomePage();
     List<ContactData> before = app.contact().getContactList();
-    ContactData contact = new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star");
+    ContactData contact = new ContactData().withName("ivan").withAddress("ttt").withSecondName("hkhk").withEmail("666@uuu").withPhone("555");
     app.contact().create(contact);
     app.goTo().HomePage();
     List<ContactData> after = app.contact().getContactList();
-  //  System.out.println(before.size());
-  //  System.out.println(after.size());
+
     Assert.assertEquals(after.size(), before.size() +1);
 
 

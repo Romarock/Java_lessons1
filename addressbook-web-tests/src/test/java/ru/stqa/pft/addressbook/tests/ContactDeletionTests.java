@@ -16,7 +16,7 @@ public class ContactDeletionTests extends TestBase {
 
     if (! app.contact(). isThereAContact()) {
 
-        app.contact().create(new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star"));
+        app.contact().create(new ContactData().withName("kolya").withSecondName("ivanov").withPhone("777").withEmail("777@888").withAddress("iii"));
         app.goTo().HomePage();
 
     }

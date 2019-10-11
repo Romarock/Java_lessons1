@@ -16,13 +16,14 @@ public class ContactModificationTests extends TestBase {
 
         if (! app.contact(). isThereAContact()) {
 
-            app.contact().create(new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star"));
+            app.contact().create(new ContactData().withName("Ivan").withSecondName("Ivanov").withEmail("888@uuu").withAddress("yyyy").withPhone("888"));
             app.goTo().HomePage();
 
         }
         List<ContactData> before = app.contact().getContactList();
         int index = before.size()-1;
-        ContactData contact = new ContactData((before.get(index).getId()),"Wa88", "Dar78th", "66666", "papavaider@sith.com", "Hot");
+        ContactData contact = new ContactData()
+                .withId(before.get(index).getId()).withName("Vasya").withSecondName("ttt").withPhone("3956").withAddress("756").withEmail("sjgf@hh");
         app.contact().modify(index, contact);
         app.goTo().HomePage();
 
