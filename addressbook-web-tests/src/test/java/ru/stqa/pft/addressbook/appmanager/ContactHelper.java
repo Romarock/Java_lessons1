@@ -7,7 +7,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -38,6 +40,11 @@ public class ContactHelper extends HelperBase {
 
     }
 
+    public void contactSelectById (int id) {
+        wd.findElement(By.cssSelector("input[value ='" + id + "']")).click();
+
+    }
+
     public void deleteContact () {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
@@ -52,6 +59,12 @@ public class ContactHelper extends HelperBase {
 
          wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
       //  click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void initContactModificationById(int id) {
+
+        wd.findElement(By.cssSelector("a[href=edit.php?id='"+ id +"']")).click();
+        //  click(By.xpath("//img[@alt='Edit']"));
     }
 
     public void SubmitContactModification() {
@@ -93,6 +106,28 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
+    public Set<ContactData> all() {
+
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List <WebElement> elements = wd.findElements(By.name("entry"));
+
+        for (WebElement element : elements) {
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String firstName = cells.get(2).getText();
+            String lastName = cells.get(1).getText();
+            contacts.add(new ContactData().withId(id).withName(firstName).withSecondName(lastName).withEmail("8585@mm").withAddress("2534").withPhone("76557"));
+        }
+
+
+
+        return contacts;
+    }
+
+
+
+
     public void create(ContactData contact) {
         goToCreateUserPage();
         fillContactsFields(contact);
@@ -104,12 +139,17 @@ public class ContactHelper extends HelperBase {
         deleteContact();
     }
 
-    public void modify(int index, ContactData contact) {
-        contactSelect(index);
-        initContactModification(index);
+    public void modify(ContactData contact) {
+        contactSelectById(contact.getId());
+        initContactModificationById(contact.getId());
         fillContactsFields(contact);
         SubmitContactModification();
 
+    }
+
+    public void delete(ContactData contact) {
+        contactSelectById(contact.getId());
+        deleteContact();
     }
 }
 
