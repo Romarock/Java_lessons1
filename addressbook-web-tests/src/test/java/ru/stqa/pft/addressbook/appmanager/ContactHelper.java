@@ -60,13 +60,7 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void createContact(ContactData contact) {
 
-        goToCreateUserPage();
-        fillContactsFields(new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star"));
-        submitContactCreation();
-
-    }
 
     public boolean isThereAContact() {
 
@@ -98,6 +92,25 @@ public class ContactHelper extends HelperBase {
 
 
         return contacts;
+    }
+
+    public void create(ContactData contact) {
+        goToCreateUserPage();
+        fillContactsFields(contact);
+        submitContactCreation();
+    }
+
+   public void delete(int index) {
+        contactSelect(index);
+        deleteContact();
+    }
+
+    public void modify(int index, ContactData contact) {
+        contactSelect(index);
+        initContactModification(index);
+        fillContactsFields(contact);
+        SubmitContactModification();
+
     }
 }
 

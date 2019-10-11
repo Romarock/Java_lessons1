@@ -15,15 +15,12 @@ public class ContactCreation2 extends TestBase {
   @Test
   public void testContactCreation2() throws Exception {
 
-    app.goTo().goToHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-
-    app.getContactHelper().goToCreateUserPage();
+    app.goTo().HomePage();
+    List<ContactData> before = app.contact().getContactList();
     ContactData contact = new ContactData("Wader", "Darth", "777777777", "papavaider@sith.com", "death star");
-    app.getContactHelper().fillContactsFields(contact);
-    app.getContactHelper().submitContactCreation();
-    app.goTo().goToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact);
+    app.goTo().HomePage();
+    List<ContactData> after = app.contact().getContactList();
   //  System.out.println(before.size());
   //  System.out.println(after.size());
     Assert.assertEquals(after.size(), before.size() +1);
@@ -35,6 +32,8 @@ public class ContactCreation2 extends TestBase {
     after.sort(byId);
   Assert.assertEquals(before, after);
   }
+
+
 
 
 }
