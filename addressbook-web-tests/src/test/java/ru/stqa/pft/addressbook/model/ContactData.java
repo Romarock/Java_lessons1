@@ -13,6 +13,8 @@ public class ContactData {
     private  String secondName;
     private  String phone;
     private  String email;
+    private  String workPhone;
+    private  String homePhone;
 
     public ContactData withName(String name) {
         this.name = name;
@@ -31,6 +33,17 @@ public class ContactData {
 
     public ContactData withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+
+        this.homePhone = homePhone;
+        return this;
+    }
+    public ContactData withWorkPhone(String workPhone) {
+
+        this.workPhone = workPhone;
         return this;
     }
 
@@ -68,6 +81,14 @@ public class ContactData {
 
     public String getPhone() {
         return phone;
+
+    }
+    public String getWorkPhone() {
+        return workPhone;
+    }
+    public String getHomePhone() {
+
+        return homePhone;
     }
 
     public String getEmail() {
