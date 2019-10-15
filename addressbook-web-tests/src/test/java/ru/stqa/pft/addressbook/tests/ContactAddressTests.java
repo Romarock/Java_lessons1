@@ -1,16 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-public class ContactEmailTests extends TestBase {
+public class ContactAddressTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
@@ -28,27 +26,20 @@ public class ContactEmailTests extends TestBase {
 
     @Test
 
-    public void testContactEmails() {
+    public void testContactAddress() {
 
         app.goTo().HomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
+        assertThat(cleaned(contact.getAddress()), equalTo(cleaned(contactInfoFromEditForm.getAddress())));
 
-        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
-
-
-    }
-
-    private String mergeEmails(ContactData contact) {
-        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).
-                stream().filter((s) -> !s.equals(""))
-                .map(ContactEmailTests::cleaned)
-                .collect(Collectors.joining("\n"));
 
     }
-    public static String cleaned (String email)  {
+
+    public static String cleaned(String email) {
 
         return email.replaceAll("\\s", "").replaceAll("[- ()]", "");
+
     }
 }
