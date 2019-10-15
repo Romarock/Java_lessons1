@@ -32,6 +32,8 @@ public class ContactHelper extends HelperBase {
         typeContactData(By.name("address"), contactData.getAddress());
         typeContactData(By.name("home"), contactData.getHomePhone());
         typeContactData(By.name("work"), contactData.getWorkPhone());
+        typeContactData(By.name("email2"), contactData.getEmail2());
+        typeContactData(By.name("email3"), contactData.getEmail3());
 
     }
 
@@ -118,9 +120,10 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String firstName = cells.get(2).getText();
             String lastName = cells.get(1).getText();
-            String[] phones =  cells.get(5).getText().split("\n");
-            contacts.add(new ContactData().withId(id).withName(firstName).withSecondName(lastName).withEmail("8585@mm").withAddress("2534")
-                    .withPhone(phones[1]).withHomePhone(phones[0]).withWorkPhone(phones[2]));
+            String  allPhones =  cells.get(5).getText();
+            String  allEmails = cells.get(4).getText();
+            contacts.add(new ContactData().withId(id).withName(firstName).withSecondName(lastName).withAddress("2534")
+                    .withAllPhones(allPhones).withAllEmails(allEmails));
         }
 
 
@@ -163,8 +166,12 @@ public class ContactHelper extends HelperBase {
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
-        return  new ContactData().withId(contact.getId()).withName(firstname).withSecondName(lastname).withPhone(mobile).withHomePhone(home).withWorkPhone(work);
+        return  new ContactData().withId(contact.getId()).withName(firstname).withSecondName(lastname).withPhone(mobile).withHomePhone(home).withWorkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3);
 
 
 

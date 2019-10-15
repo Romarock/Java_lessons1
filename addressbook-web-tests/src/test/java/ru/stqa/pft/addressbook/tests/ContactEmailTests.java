@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-public class ContactPhoneTest extends TestBase {
+public class ContactEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().HomePage();
         if (!app.contact().isThereAContact()) {
 
-            app.contact().create(new ContactData().withName("Ivan").withSecondName("Ivanov").withEmail("888@uuu").withAddress("yyyy").withPhone("888").withHomePhone("555").withWorkPhone("666"));
+            app.contact().create(new ContactData()
+                    .withName("Ivan").withSecondName("Ivanov").withEmail("888@uuu").withAddress("yyyy").withPhone("888").withHomePhone("555").withWorkPhone("666")
+                    .withEmail2("222@222").withEmail3("333@333"));
             app.goTo().HomePage();
 
         }
@@ -25,30 +27,27 @@ public class ContactPhoneTest extends TestBase {
 
     @Test
 
-    public void  testContactPhones() {
+    public void testContactEmails() {
 
         app.goTo().HomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        
 
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+
 
     }
 
-    private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getPhone(), contact.getWorkPhone()).
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3()).
                 stream().filter((s) -> !s.equals(""))
-                .map(ContactPhoneTest::cleaned)
+                .map(ContactEmailTests::cleaned)
                 .collect(Collectors.joining("\n"));
 
     }
+    public static String cleaned (String email)  {
 
-    public static String cleaned (String phone)  {
-
-        return phone.replaceAll("\\s", "").replaceAll("[- ()]", "");
-        }
-
+        return email.replaceAll("\\s", "").replaceAll("[- ()]", "");
+    }
 }
-
-
-
