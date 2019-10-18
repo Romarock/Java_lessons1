@@ -18,20 +18,16 @@ public class GroupCreationTests extends TestBase {
   @DataProvider
 public Iterator<Object[]> validGroups() throws IOException {
 
-    List<Object[]> list = new ArrayList<Object[]>();
- BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/groups.csv")));
-   String line = reader.readLine();
-   while (line != null ) {
-
-     String[] split =  line.split(";");
-     list.add(new Object[]{ new GroupData().withName(split[0]).withHeader(split[0]).withFooter(split[0])});
-     line = reader.readLine();
-   }
-    return  list.iterator();
+      List<Object[]> list = new ArrayList<Object[]>();
+      list.add(new Object[]{new GroupData().withName("test 1").withHeader("header 1").withFooter("footer1")});
+      list.add(new Object[]{new GroupData().withName("test 2").withHeader("header 2").withFooter("footer2")});
+      list.add(new Object[]{new GroupData().withName("test 3").withHeader("header 3").withFooter("footer3")});
+      return  list.iterator();
 
   }
 
-  @Test(dataProvider = "validGroups")
+
+    @Test(dataProvider = "validGroups")
   public void testGroupCreation(GroupData group) throws Exception {
 
 
@@ -47,7 +43,7 @@ public Iterator<Object[]> validGroups() throws IOException {
               before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }
 
-  @Test(enabled = false)
+  @Test
   public void testBadGroupCreation() throws Exception {
 
 

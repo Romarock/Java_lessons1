@@ -17,7 +17,7 @@ public class PortalTest {
     public void testPortal1() throws Exception {
 
 
-        int e = 10;
+        int e = 20;
 
         for (int i = 0; i < e ; i++) {
         wd = new ChromeDriver();
@@ -25,7 +25,7 @@ public class PortalTest {
         wd.get("https://tvpp-cis1.otc.mshop.csolab.ru/portal/login.jsp");
         login();
         assertThat(isErrorPresent(), equalTo(false));
-       // goToTSG();
+        goToTSG();
 
 
         wd.quit();
