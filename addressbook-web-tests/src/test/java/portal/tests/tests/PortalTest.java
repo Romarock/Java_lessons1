@@ -17,7 +17,7 @@ public class PortalTest {
     public void testPortal1() throws Exception {
 
 
-        int e = 1;
+        int e = 500;
 
         for (int i = 0; i < e ; i++) {
         wd = new ChromeDriver();
@@ -44,7 +44,7 @@ public class PortalTest {
         wd.findElement(By.id("j_vo")).sendKeys("");
         wd.findElement(By.id("j_password")).click();
         wd.findElement(By.id("j_password")).clear();
-        wd.findElement(By.id("j_password")).sendKeys("#");
+        wd.findElement(By.id("j_password")).sendKeys("");
         wd.findElement(By.id("login")).click();
 
 
