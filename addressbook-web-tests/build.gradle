@@ -9,6 +9,7 @@ dependencies {
     compile 'org.hamcrest:hamcrest-junit:2.0.0.0'
     compile 'com.thoughtworks.xstream:xstream:1.4.11.1'
     compile 'de.weltraumschaf.commons:jcommander:2.2.0'
+    compile 'com.google.code.gson:gson:2.8.6'
 
 
 
