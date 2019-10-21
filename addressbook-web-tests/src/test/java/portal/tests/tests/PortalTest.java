@@ -17,17 +17,16 @@ public class PortalTest {
     public void testPortal1() throws Exception {
 
 
-        int e = 20;
+        int e = 1;
 
         for (int i = 0; i < e ; i++) {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get("https://tvpp-cis1.otc.mshop.csolab.ru/portal/login.jsp");
+        wd.get("https://tvpp-cis2.otc.mshop.csolab.ru/portal/login.jsp");
         login();
         assertThat(isErrorPresent(), equalTo(false));
-        goToTSG();
-
-
+        customerSearch();
+        // goToTSG();
         wd.quit();
 
         }
@@ -45,8 +44,9 @@ public class PortalTest {
         wd.findElement(By.id("j_vo")).sendKeys("");
         wd.findElement(By.id("j_password")).click();
         wd.findElement(By.id("j_password")).clear();
-        wd.findElement(By.id("j_password")).sendKeys("");
+        wd.findElement(By.id("j_password")).sendKeys("#");
         wd.findElement(By.id("login")).click();
+
 
 
 
@@ -61,6 +61,13 @@ public class PortalTest {
         }
 
 
+    }
+
+    public void customerSearch() {
+        wd.findElement(By.id("customerSearchForm:j_idt111:customerSearchTmoBox:numberEntry")).click();
+        wd.findElement(By.id("customerSearchForm:j_idt111:customerSearchTmoBox:numberEntry")).clear();
+        wd.findElement(By.id("customerSearchForm:j_idt111:customerSearchTmoBox:numberEntry")).sendKeys("4916099661100");
+        wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='*'])[5]/following::span[1]")).click();
     }
 
     public void goToTSG() {

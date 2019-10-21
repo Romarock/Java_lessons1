@@ -19,9 +19,16 @@ public class GroupCreationTests extends TestBase {
 public Iterator<Object[]> validGroups() throws IOException {
 
       List<Object[]> list = new ArrayList<Object[]>();
-      list.add(new Object[]{new GroupData().withName("test 1").withHeader("header 1").withFooter("footer1")});
-      list.add(new Object[]{new GroupData().withName("test 2").withHeader("header 2").withFooter("footer2")});
-      list.add(new Object[]{new GroupData().withName("test 3").withHeader("header 3").withFooter("footer3")});
+     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resourses/groups.csv")));
+      String line = reader.readLine();
+      while (line != null) {
+
+         String[] split =  line.split(";");
+
+         list.add(new Object[]{new GroupData().withName(split[0]).withFooter(split[1]).withHeader(split[2])});
+
+         line = reader.readLine();
+      }
       return  list.iterator();
 
   }
